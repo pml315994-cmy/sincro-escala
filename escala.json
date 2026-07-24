@@ -1,0 +1,9 @@
+[
+    {
+        "nome": "escala do frigorífico", 
+        "descrição": "escala semanal", 
+        "dias": ["segunda-feira", "terça-feira","quarta-feira","quinta-feira","sexta-feira","sabado","domingo"],
+        "funcionarios": ["Fábio","Waldir","Jessica"] 
+    }
+]
+
