@@ -11,6 +11,7 @@ def apresenta_menu():
     print("")
     print("1. Cadastrar funcionário📝")
     print("2. Listar funcionário📝📝")
+    print("3. Listar excluir funcionario 🗑️")
     print("0. Sair ❌")  
     print("")
     opcao_menu = input("Escolha uma opção: ")
@@ -18,8 +19,8 @@ def apresenta_menu():
 
 def cadastrar_funcionarios():
     funcionario = input("digite o nome do funcionario: ")
-    with open(path_bd, "a", encoding="utf-8") as f:  
-        f.write(f"{funcionario}\n")
+    with open(path_bd, "a", encoding="utf-8") as arquivo:  
+        arquivo.write(f"{funcionario}\n")
     funcionarios.append(funcionario)
     print(f"O nome cadastrado foi: {funcionario}")
     print("======================================")
@@ -34,13 +35,24 @@ def cadastrar_funcionarios():
         print ("cadastro concluido")
 
 def listar_funcionarios():
-    with open(path_bd, "r", encoding="utf-8") as f:  
-        for linha in f:
+    with open(path_bd, "r", encoding="utf-8") as arquivo:  
+        for linha in arquivo:
             print (linha.strip())
 
+def excluir_funcionario():
+    listar_funcionarios()
+    funcionario = input("qual funcionario voce deseja deletar: ")
+    with open(path_bd, "r", encoding="utf-8") as arquivo:  
+       nomes=arquivo.readlines()
+
+    with open(path_bd, "w", encoding="utf-8") as arquivo:  
+         for linha in nomes:
+            if linha.strip() == funcionario:
+                linha=""
+            arquivo.write(linha) 
 
 def sair():
-    print("saindo do sistema de gestão de escala⏏️")
+    print("saindo do sistema de gestão de escala ⏏️")
 #=======================================================================
 while not sair_do_sistema:
 
@@ -51,6 +63,8 @@ while not sair_do_sistema:
             cadastrar_funcionarios()
         case "2":
             listar_funcionarios()
+        case "3":
+            excluir_funcionario()
         case "0":
             sair()
             break
