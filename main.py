@@ -1,7 +1,6 @@
-from pathlib import Path
+from funcionario import cadastrar_funcionarios, listar_funcionarios, excluir_funcionario
+from escala import cadastrar_escala
 
-path_bd=Path("sincro-escala/BD") / "funcionario_bd.txt"
-funcionarios=[]
 sair_do_sistema=False
 
 def apresenta_menu():
@@ -12,44 +11,11 @@ def apresenta_menu():
     print("1. Cadastrar funcionário📝")
     print("2. Listar funcionário📝📝")
     print("3. Listar excluir funcionario 🗑️")
+    print("4. Cadastrar escala📝")
     print("0. Sair ❌")  
     print("")
     opcao_menu = input("Escolha uma opção: ")
     return opcao_menu
-
-def cadastrar_funcionarios():
-    funcionario = input("digite o nome do funcionario: ")
-    with open(path_bd, "a", encoding="utf-8") as arquivo:  
-        arquivo.write(f"{funcionario}\n")
-    funcionarios.append(funcionario)
-    print(f"O nome cadastrado foi: {funcionario}")
-    print("======================================")
-    print ("você gostaria de adicionar um novo funcionario?")
-    print ("1. sim✅")
-    print("2. não❌")
-    seguir_cadastro=input ("Escolha uma opção")
-    print("======================================")
-    if seguir_cadastro=="1":
-        cadastrar_funcionarios()
-    if seguir_cadastro=="2":
-        print ("cadastro concluido")
-
-def listar_funcionarios():
-    with open(path_bd, "r", encoding="utf-8") as arquivo:  
-        for linha in arquivo:
-            print (linha.strip())
-
-def excluir_funcionario():
-    listar_funcionarios()
-    funcionario = input("qual funcionario voce deseja deletar: ")
-    with open(path_bd, "r", encoding="utf-8") as arquivo:  
-       nomes=arquivo.readlines()
-
-    with open(path_bd, "w", encoding="utf-8") as arquivo:  
-         for linha in nomes:
-            if linha.strip() == funcionario:
-                linha=""
-            arquivo.write(linha) 
 
 def sair():
     print("saindo do sistema de gestão de escala ⏏️")
@@ -65,6 +31,8 @@ while not sair_do_sistema:
             listar_funcionarios()
         case "3":
             excluir_funcionario()
+        case "4":
+            cadastrar_escala()
         case "0":
             sair()
             break
