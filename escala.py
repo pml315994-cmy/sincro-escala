@@ -1,15 +1,20 @@
 from pathlib import Path
 
+path_bd=Path("sincro-escala/BD") / "funcionario_bd.txt"
+funcionarios=[]
 
-path_bd=Path("sincro-escala/BD") / "escala_bd.txt"
-escalas=[]
-
-def cadastrar_escala():
-    escala=input("digite o nome do funcionario: ")
+def cadastrar_funcionarios():
+    print("======================================")
+    print("     CADASTRO DE FUNCIONARIOS")                
+    print("======================================")
+    print("")
+    listar_funcionarios()
+    print("")
+    funcionario = input("digite o nome do funcionario: ")
     with open(path_bd, "a", encoding="utf-8") as arquivo:  
-        arquivo.write(f"{escala}\n")
-    escalas.append(escala)
-    print(f"O nome cadastrado foi: {escala}")
+        arquivo.write(f"{funcionario}\n")
+    funcionarios.append(funcionario)
+    print(f"O nome cadastrado foi: {funcionario}")
     print("======================================")
     print ("você gostaria de adicionar um novo funcionario?")
     print ("1. sim✅")
@@ -17,6 +22,23 @@ def cadastrar_escala():
     seguir_cadastro=input ("Escolha uma opção")
     print("======================================")
     if seguir_cadastro=="1":
-        cadastrar_escala()
+        cadastrar_funcionarios()
     if seguir_cadastro=="2":
         print ("cadastro concluido")
+
+def listar_funcionarios():
+    with open(path_bd, "r", encoding="utf-8") as arquivo:  
+        for linha in arquivo:
+            print (linha.strip())
+
+def excluir_funcionario():
+    listar_funcionarios()
+    funcionario = input("qual funcionario voce deseja deletar: ")
+    with open(path_bd, "r", encoding="utf-8") as arquivo:  
+       nomes=arquivo.readlines()
+
+    with open(path_bd, "w", encoding="utf-8") as arquivo:  
+         for linha in nomes:
+            if linha.strip() == funcionario:
+                linha=""
+            arquivo.write(linha) 
