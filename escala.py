@@ -1,44 +1,47 @@
 from pathlib import Path
 
-path_bd=Path("sincro-escala/BD") / "funcionario_bd.txt"
-funcionarios=[]
+path_bd=Path("sincro-escala/BD") / "escala_bd.txt"
+escalas=[]
 
-def cadastrar_funcionarios():
+def cadastrar_escalas():
     print("======================================")
-    print("     CADASTRO DE FUNCIONARIOS")                
+    print("           CADASTRA ESCALA            ")                
     print("======================================")
     print("")
-    listar_funcionarios()
+    listar_escalas()
     print("")
-    funcionario = input("digite o nome do funcionario: ")
+    escala= input("digite o nome da escala: ")
     with open(path_bd, "a", encoding="utf-8") as arquivo:  
-        arquivo.write(f"{funcionario}\n")
-    funcionarios.append(funcionario)
-    print(f"O nome cadastrado foi: {funcionario}")
+        arquivo.write(f"{escala}\n")
+    print(f"O nome cadastrado foi: {escala}")
     print("======================================")
-    print ("você gostaria de adicionar um novo funcionario?")
+    print ("você gostaria de adicionar uma nova escala?")
     print ("1. sim✅")
     print("2. não❌")
     seguir_cadastro=input ("Escolha uma opção")
     print("======================================")
     if seguir_cadastro=="1":
-        cadastrar_funcionarios()
+        cadastrar_escalas()
     if seguir_cadastro=="2":
         print ("cadastro concluido")
 
-def listar_funcionarios():
+def listar_escalas():
     with open(path_bd, "r", encoding="utf-8") as arquivo:  
         for linha in arquivo:
-            print (linha.strip())
+            nome_limpo=linha.strip()
+            if nome_limpo not in escalas:
+                escalas.append(linha.strip())
 
-def excluir_funcionario():
-    listar_funcionarios()
-    funcionario = input("qual funcionario voce deseja deletar: ")
+    print ("\n".join(escalas))
+
+def excluir_escala():
+    listar_escalas()
+    escala = input("qual escala voce deseja deletar: ")
     with open(path_bd, "r", encoding="utf-8") as arquivo:  
        nomes=arquivo.readlines()
 
     with open(path_bd, "w", encoding="utf-8") as arquivo:  
          for linha in nomes:
-            if linha.strip() == funcionario:
+            if linha.strip() == escala:
                 linha=""
             arquivo.write(linha) 
