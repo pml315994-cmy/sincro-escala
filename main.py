@@ -1,6 +1,6 @@
-from funcionario import cadastrar_funcionarios, excluir_funcionario, listar_funcionarios, excluir_funcionario
-from escala import cadastrar_escalas, cadastrar_escalas, listar_escalas, excluir_escala, listar_escalas
-#from relacionamento import menu_participacoes
+from funcionario import cadastrar_funcionarios, excluir_funcionario, listar_funcionarios
+from escala import cadastrar_escala, listar_escala, excluir_escala
+from relacionamento import menu_participacoes
 
 sair_do_sistema = False
 
@@ -52,13 +52,13 @@ while not sair_do_sistema:
             print("     CADASTRO DE ESCALAS")
             print("======================================")
             print("")
-            cadastrar_escalas()  
+            cadastrar_escala()  
         case "5":
             print("======================================")
             print("     LISTA DE ESCALAS")
             print("======================================")
             print("")
-            listar_escalas()
+            listar_escala()
         case "6":
             print("======================================")
             print("     REMOÇÃO DE ESCALAS")
@@ -67,7 +67,7 @@ while not sair_do_sistema:
             excluir_escala()     
         case "7":
             print("")
-            #menu_participacoe()
+            menu_participacoes()
         case "0":
             sair()
             break
